@@ -1,0 +1,54 @@
+A crash course for CSS and SASS. (Based on a project)
+
+Basic Starter CSS setup: This will reset the default browser setting of your page onload
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// This will reset the default browser setting for margin and padding
+//For box-sizing: border-box; This means the paddings and margins will not be 
+added to the defined size of the box element
+
+
+body {
+    font-family:"Lato", sans-serif; ;
+    font-weight: 400;
+    line-height: 1.7;
+    padding: 30px;
+    color: #777;
+}
+
+//The above sets your preferred style for the body element which is inherited by all the child elements if no 
+other style is defined for the element. NOTE: Padding is not inherited by all the child elements.
+
+
+Building the header:
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, 
+    rgba(255, 255, 255, 0.8), 
+    rgba(0, 0, 0, 0.8)),
+    url(../img/bg.jpg);
+    background-size: cover;
+    background-position: top;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)
+}
+
+//The above defines the style of the header. Without a defined width, it assumes the width of the container.
+//Tha background image features a color gradient overlayed on the background image.
+//With background-size set to cover, the image adjust without losing pixels to fit the container.
+//background-position: top; The image is adjusted to show more of the top side of the image.
+//The clip-path property is used to clip images in a specific way. 
+//The polygonn we use has four sides(x y, x y, x y, x y) The x and y represents axis. So we set the starting point of the polygon
+//to 0 0(no movement), te next side in a clockwise direction we set the x to 100% because we need the image to
+//go 100% in the x direction from the starting point to the second side of the polygon and y to zero.
+//for the 3rd side we set the x to 100% as well and the y to 75% because we want the image to be clip at this point.
+//the 4th side the x is set to zero and the y to 100% from origin.
+
+NOTE: for clip-path resources visit: https://undraw.co/illustrations
+
