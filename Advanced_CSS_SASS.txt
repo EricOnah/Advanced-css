@@ -188,4 +188,130 @@ the heading itself
 
 //for more animations visit: https://animista.net/
 
-Adding the search button:  
+Adding the search button:  Since the search button is right below the heading we can have it in the same box as the heading.
+
+
+    <div class="text-box">
+        <h1 class="heading-primary>
+            <span class="heading-primary-main">The main title</span>
+            <span class="heading-primary-sub">The sub-main title</span>
+        </h1>
+
+        <a href="#" class="btn btn-primary">Your preferred text</a>
+    </div>
+
+You can do this with both a link or button or both combined but for easy styling we used the link.
+
+Styling the search button:
+
+    .btn:link,
+    .btn:visited {
+        text-decoration: none;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 100px;
+        transition: all .2s;
+        position: relative;
+    }
+
+
+    .btn-primary {
+        background-color: #;
+        color: #;
+    }
+
+
+//In order to have the paddings and margins behave properly when applied to an inline element,
+//we change the display property to inline-block.
+//the .btn is a general class for all our button in this page to make the styling less voluminous.
+//we the used the .btn-primary or any other name to mean specific buttons and give them their specific styling.
+//transition property is always added in the initial state not where the transform is defined.
+
+To have the button in the center of the container, we add text-align property to the container since it's an inline element.
+
+    .text-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+To add animation to the button we can choose to add it to the hover pseudo class.
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0(<x-direction>) 10px(<y-direction>) 20px(<blur>) rgba(0, 0, 0, 0.5); //rgba to add transparency to the color
+    }
+
+    .btn:active {
+         transform: translateY(-1px);
+    }
+//This will add a bounce effect to the button on hover and click events.
+
+Adding the ::after pseudo element to animate the button a give it a blink effect. with this we can create an
+element just like the parent element the button with just css.
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .2s;
+}
+
+.btn-primary::after {
+    background-color: #;
+
+}
+
+
+//The content property is very important for the after pseudo element to appear on the page.
+//To position the after pseudo element behind the parent element we use the absolute positioning with the btn
+//as the parent element set to position relative.
+
+Now that we have the after pseudo element, we can animate it on hover
+
+    btn:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+    }
+
+//The opacity 0 is added for a fade-out effect.
+
+we can always add an animation on load just like the headings.
+
+    @keyframes moveInBtn {
+
+        0%{
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0)
+        }
+        
+    }
+
+//To have this animation apply to chosen button, we can add an extra class to the element say .btn-animated
+
+    .btn-animated {
+        animation: moveInBtn 0.2s easeIn 0.75(<animation delay>);
+        animation-fill-mode: backwards;
+    }
+
+//animation-fill-mode: backwards we start the animation on load from 0%. This way the button doesn't appear first before animating.
+
+
+
+
+
+
