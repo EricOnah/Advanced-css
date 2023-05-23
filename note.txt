@@ -1,0 +1,176 @@
+First css rule is to do a universal reset.
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;    
+}
+
+NOTE: The font related settings are done in the body because of css inheritance.
+
+Note: box-sizing: border-box - This will prevent the padding and margin to be added to the total width
+height of the specified for the box.
+
+To add an icon to a website title <link rel="shortcut icon" type="image/png" href="img location"/>
+
+"cover" ensures the image covers the whole length no matter the screen size
+"top" for background position keeps the top fixed when moving between screen sizes. The top is not cropped.
+Other options include - bottom, center, right, left. Depending on the most catchy part of the image, you set
+your background position.
+
+NOTE: animation-fill-mode: backwards; will make the animation to start from the initial set value upon load.
+This prevents the object first showing up before animation.
+
+
+Pillars of CSS:
+1. Responsiveness
+2. Maintainable and scalable
+3. Web performance.
+
+cascading value for specificity (0,0,0,0) - inline, ID, classes, element and pseudo-element.
+If there is a tie, then the last declared CSS value wins.
+Cascading - selecting which value should take precedence depending on specificity.
+
+
+
+
+BEM - 
+Block: Stand alone component that's meaningful on it's own. e.g "header". Every element inside a Block
+should have their class name start with the block name followed by double underscore. "header__logo".
+You can a Block inside a block. a h1 can be a block in a header. Blocks like this most have modifiers like
+in our index.html heading-primary is a block inside header which is followed by two modifiers
+"heading-primary--main" and "heading-primary--sub". As you have noticed, modifiers are written with double
+dashes.
+NOTE: Stand-alone(Block) components are reusable inside the project
+
+
+SASS - CSS preprocessor
+Main Features - variables: to have reusable values
+              - Nesting: allows us to nest selectors inside one another to have less code.
+              - Operators: for mathematical operations inside css
+              - partials and Imports: allows to write css in different files and import them in other files
+              - Mixins: to write reusable css codes.
+              - functions: to produce reusable values
+              - Extends: to make selectors inherit declarations that are common to all of them
+
+NOTE: SCSS is preferred over SASS syntax because of it's similar to normal css
+
+Variable: starts with a "$" sign e.g $color-primary: red;
+Nesting: selecting element inside another element by having the element selector inside the parent element
+selector. 
+    .nav{
+            background-color: $color-primary;
+            li{
+            list-style-type: none;
+            }
+    }
+
+You can use "&" to avoid repetition of selectors when Nesting. for the above eg li{
+    list-style-type: none;
+    &:first-child{
+        margin:0;
+    }
+}
+
+"&" as used above will carry forward the selector path to the new selector. Best use scenario is a pseudoclass selector.
+NOTE: If you are selecting an element inside the parent, you do not have to "&"
+
+NOTE: clear-fix method when using float. This used to fix margin issues when float is used. Best practice is to
+have it nested inside the parent using a pseudo selector
+&::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+functions: css functions allow you to do make changes by just declaring the function and not write the
+css properties. eg
+&:hover {
+    background-color: darken($color-secondary, 5%)
+  }
+the css function in the above is "darken" which darkens the background colorby 5% on hover without having
+you write the properties.
+
+to write your own functions - @function <function name> ($a, $b){
+    @return $a + $b;
+}
+
+Mixin: this is like a function with a name. You declare the mixin with "@mixin". syntax:
+    @mixin clearfix {
+        &::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    }
+with the above, we now have a reusable mixin(function with a name) called "clearfix" 
+to apply this mixin anywhere in the css you use "@include <mixin name>"
+mixin is very helpful in maintain DRY method.
+
+You can have mixins with argument to specify certain variables. The argument is added with a "$" 
+    @mixin style-link-text($color){
+        text-decoration; none;
+        text-transform; uppercase;
+        color: $color;
+    }
+
+To apply the mixin above with the argument - @include style-link-text(<color variable name>)
+
+Extend: starts with "%" then the name. eg %btn-placeholder
+Helps with DRY code. To apply the above in any element - @extend %btn-placeholder.
+With extend the properties and not carried into the element as in mixin but the selector is what is added
+to the properties at the point of declaration of the extend.
+        %btn-placeholder {
+            padding: 10px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 100px;
+            width: $width-btn;
+            @include style-link-text($color-text-light);
+
+        }
+If we extend the above to any element, the properties declared above are not carried into the element
+by the compiler rather the selector is applied to the declared properties.
+
+.btn-main {
+    &:link {
+        @extend %btn-placeholder;
+    }
+}
+
+Complied css - .btn-main:link {
+                                    padding: 10px;
+                                    display: inline-block;
+                                    text-align: center;
+                                    border-radius: 100px;
+                                    width: 150px; //from width variable
+                                    text-decoration: none; //from @include
+                                    text-transform: uppercase; //from @include
+                                    color: #eee; //from @include
+                            }
+
+
+How to use SASS in your local machine:
+
+- Install Node
+- initialize node in your working directory
+- Install node-sass with npm <npm install node-sass --save-dev>
+
+Sass compiler script: you write this in the package.json file in the script section.
+ "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+
+  To run the compiler - npm run compile:sass
+
+  <sass/main.scss> refers to the location of the scss file while <css/style.css> refers to the location of the
+  style.css file. The -w will make node watch whatever changes we make in the sass and compile automatically.
+NOTE: On my machine I have to save twice for the compiler to render without error.
+NOTE: You can install live-sever an npm package for automatic reload. VS code already have this.
