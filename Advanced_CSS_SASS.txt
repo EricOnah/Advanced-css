@@ -1,25 +1,25 @@
-A crash course for CSS and SASS. (Based on a project)
+h1A crash course for CSS and SASS. (Based on a project)
 
 Basic Starter CSS setup: This will reset the default browser setting of your page onload
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
 // This will reset the default browser setting for margin and padding
 //For box-sizing: border-box; This means the paddings and margins will not be 
 added to the defined size of the box element
 
 
-body {
-    font-family:"Lato", sans-serif; ;
-    font-weight: 400;
-    line-height: 1.7;
-    padding: 30px;
-    color: #777;
-}
+    body {
+        font-family:"Lato", sans-serif; ;
+        font-weight: 400;
+        line-height: 1.7;
+        padding: 30px;
+        color: #777;
+    }
 
 //The above sets your preferred style for the body element which is inherited by all the child elements if no 
 other style is defined for the element. NOTE: Padding is not inherited by all the child elements.
@@ -27,28 +27,165 @@ other style is defined for the element. NOTE: Padding is not inherited by all th
 
 Building the header:
 
-.header {
-    height: 95vh;
-    background-image: linear-gradient(to right bottom, 
-    rgba(255, 255, 255, 0.8), 
-    rgba(0, 0, 0, 0.8)),
-    url(../img/bg.jpg);
-    background-size: cover;
-    background-position: top;
+    .header {
+        height: 95vh;
+        background-image: linear-gradient(to right bottom, 
+        rgba(255, 255, 255, 0.8), 
+        rgba(0, 0, 0, 0.8)),
+        url(../img/bg.jpg);
+        background-size: cover;
+        background-position: top;
 
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)
-}
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+        position: relative;
+    }
 
 //The above defines the style of the header. Without a defined width, it assumes the width of the container.
 //Tha background image features a color gradient overlayed on the background image.
 //With background-size set to cover, the image adjust without losing pixels to fit the container.
 //background-position: top; The image is adjusted to show more of the top side of the image.
 //The clip-path property is used to clip images in a specific way. 
-//The polygonn we use has four sides(x y, x y, x y, x y) The x and y represents axis. So we set the starting point of the polygon
+//The polygon we use has four sides(x y, x y, x y, x y) The x and y represents axis. So we set the starting point of the polygon
 //to 0 0(no movement), te next side in a clockwise direction we set the x to 100% because we need the image to
 //go 100% in the x direction from the starting point to the second side of the polygon and y to zero.
 //for the 3rd side we set the x to 100% as well and the y to 75% because we want the image to be clip at this point.
 //the 4th side the x is set to zero and the y to 100% from origin.
 
-NOTE: for clip-path resources visit: https://undraw.co/illustrations
+NOTE: for clip-path resources visit: https://bennettfeely.com/clippy/
 
+hmtl structure for the logo: Since image is an inline element, it's better to wrap the img with a div.
+
+    <div class="logo-box">
+        <img src="#" alt="logo" class="logo">
+    </div>
+
+//This will make the styling easy.
+
+styling The logo:
+
+position: To use this the parent element of the box should have it's position relative so tha the positions
+defined for the box will be in relation to the parent element.
+
+With the logo-box we set the position of the logo in the header and with class logo, we define the size of the logo.
+
+    .logo-box {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+    }
+
+    .logo {
+        height: 35px;
+    }
+
+//You can always play with these numbers
+
+Heading: For SEO pupose, the h1 is the most important heading. So it is used to define the heading of the web page.
+for this project, we split the heading into two using a span element for styling purposes.
+    <div class="text-box">
+        <h1 class="heading-primary>
+            <span class="heading-primary-main">The main title</span>
+            <span class="heading-primary-sub">The sub-main title</span>
+        </h1>
+    </div>
+   
+
+Styling the heading: The heading-primary class will style the whole heading while the span classes will style the
+individual parts of the heading.
+
+    .heading-primary {
+        color: #;
+        text-transform: uppercase;
+    }
+
+To have the individual parts of the heading occupying separate line we give the display property block.
+
+    .heading-primary-main {
+        display: block;
+        font-size: ;
+        font-weight: ;
+        letter-spacing: ;
+    }
+
+    .heading-primary-sub {
+        display: block;
+        font-size: ;
+        font-weight: ;
+        letter-spacing: ;
+    }
+
+To position the heading in the center, we style the text-box.
+
+    .text-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+The above style in the text-box is how to center an element in the parent container using positioning.
+
+//We styled the box after styling the heading text but the box style should be put above the heading style to follow
+//the html order.
+
+NOTE: Always wrap parts of a section to be styled separately in a div.
+
+Adding animation to the heading text: Using @keyframes we can add animation to a css element.
+
+    @keyframes moveInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        80% {
+            transform: translateX(20px); 
+        }
+
+        100% {
+           opacity: 1;
+            transform: translateX(0); 
+        }
+    }
+
+We define the % to be a point in the animation time. You can whatever point from 0 - 100. To apply this animation to a css element
+we add the animation property to it's styling. animation: <animation name> <animation duration> <animation timing fxn>
+Since we are animating the heading text we add this animation property to the heading text.
+
+NOTE: Browser is optmized for opacity and transform property.
+NOTE: The 80% point is added for bouncing effect. The over moves at 80% and returns to 0 at 100%.
+
+    .heading-primary-main {
+        display: block;
+        font-size: ;
+        font-weight: ;
+        letter-spacing: ;
+        animation: moveInLeft .2s ease-in;
+    } 
+
+For the sub heading we can dd a moveInRight animation to show a movement in the opposite direction.
+to do this, we define properties that are exact opposite to the the moveInLeft animation.
+
+
+    .heading-primary-sub {
+            display: block;
+            font-size: ;
+            font-weight: ;
+            letter-spacing: ;
+            animation: moveInRight .2s ease-out;
+            
+        }
+
+//to fix the shake in the animation we use a property backface-visibility and set it to hidden. This is added
+the heading itself
+
+      .heading-primary {
+        color: #;
+        text-transform: uppercase;
+        backface-visibility: hidden;
+    }
+
+
+//for more animations visit: https://animista.net/
+
+Adding the search button:  
