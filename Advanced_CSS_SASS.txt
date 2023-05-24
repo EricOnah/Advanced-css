@@ -24,6 +24,10 @@ added to the defined size of the box element
 //The above sets your preferred style for the body element which is inherited by all the child elements if no 
 other style is defined for the element. NOTE: Padding is not inherited by all the child elements.
 
+NOTE: For this project we are using the BEM - BEM (Block, Element, Modifier) is a component-based approach to web development. The idea behind it is to divide the user interface into independent blocks. This makes interface development easy and fast even with a complex UI, 
+     and it allows reuse of existing code without copying and pasting.
+     to learn about this method visit - https://en.bem.info/methodology/quick-start/
+
 
 Building the header:
 
@@ -68,13 +72,13 @@ defined for the box will be in relation to the parent element.
 
 With the logo-box we set the position of the logo in the header and with class logo, we define the size of the logo.
 
-    .logo-box {
+    .header__logo-box {
         position: absolute;
         top: 40px;
         left: 40px;
     }
 
-    .logo {
+    .header__logo {
         height: 35px;
     }
 
@@ -116,7 +120,7 @@ To have the individual parts of the heading occupying separate line we give the 
 
 To position the heading in the center, we style the text-box.
 
-    .text-box {
+    .header__text-box {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -311,7 +315,115 @@ we can always add an animation on load just like the headings.
 //animation-fill-mode: backwards we start the animation on load from 0%. This way the button doesn't appear first before animating.
 
 
+Using Sass:
+
+First we install node-sass as our compiler. To do that we use `npm install node-sass --save-dev`
+
+//--save-dev will add the node-sass as a developer dependency in our package.json file.
+//NOTE: You must have node.js installed before this.
+
+create a folder for the sass files and in the folder create the main.scss file.
+//we will be using scss for our sass in this project.
+
+In the package.json file add a compiler script that we compile our sass codes in the style.css file
+
+Under scripts add - `"compile:sass:" "sass/main.scss css/style.css -w"
+
+//The -w will make Node.js to watch for changes in our files and compile on save
+
+This way scss code we write in our sass files will be automatically compiled by node.js.
+
+NOTE: We will be creating files and folders to house different aspect of our styling using the - 7 in 1 pattern
+
+Sass we can nest codes using `&` to make it make more sense. This way keep maintaining the BEM method.
+
+e.g .header {
+        height: 95vh;
+        background-image: linear-gradient(to right bottom, 
+        rgba(255, 255, 255, 0.8), 
+        rgba(0, 0, 0, 0.8)),
+        url(../img/bg.jpg);
+        background-size: cover;
+        background-position: top;
+
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+        position: relative;
+
+        &__logo {
+
+        }
+
+        &__text-box {
+
+        }
+
+    }
 
 
+NOTE: You can do this with blocks and elements and it's modifiers.
+
+//This way we can have all the styling for the header and child elements in one giant code block.
+    
+Creating the folders: This folders will contain partials so that they can be imported in the main.scss. The filename for
+partials starts with `_`
+    1. bass: - For low level bases such as reset, html, body elements - _base.scss
+        files for base folder: _base.scss, _animation.scss, _typography.scss, _utilities.scss
+    2. abstract: - for _variables.scss, _mixins.scss, _functions.scss
+
+    3. Components: reuseable components are stored here. 
+
+    4. Layout: Here we have the global header, footer etc
+
+    5. Pages: for specific pages.
+
+    6. Themes:
+
+    7: Vendors: 
+
+NOTE: With @import we import this partials in the main.scss file `@import base/base`  The <foldername>/<file name>
+//The `_` in the scss file name is omitted from the @import line. Sass will automatically know it's partial. 
+//for each file created, you must import it in the main.scss file for to be recognized.
+
+Next is to move the codes to each specific file. Animation in _animation.scss, typography in _typography.scss
+
+Building grid system:
+
+First create a row and put the columns inside the row.
+
+    <div class="row">
+        <div class="col-1-of-2">
+            1st half of two equal columns
+        </div> 
+        <div class="col-1-of-2">
+            2nd half of two equal columns
+        </div>
+    </div>
+
+//A row containing two equal columnsof equal halves
+
+    <div class="row">
+        <div class="col-1-of-3">
+            1st part of 3 equal columns
+        </div> 
+        <div class="col-1-of-3">
+            2nd part of 3 equal columns
+        </div> 
+        <div class="col-1-of-3">
+            3nd part of 3 equal columns
+        </div>
+    </div>
+
+//A row containing 3 equal columns of equal parts
+
+<div class="row">
+        <div class="col-1-of-3">
+            1st part of 3 equal columns
+        </div> 
+        <div class="col-2-of-3">
+            2nd stretching through 2 equal equal columns
+        </div> 
+    </div>
+
+//A row containing 3 equal columns of equal parts
 
 
