@@ -363,6 +363,9 @@ e.g .header {
 NOTE: You can do this with blocks and elements and it's modifiers.
 
 //This way we can have all the styling for the header and child elements in one giant code block.
+//'&' is used to nest a selector/pseudo selector inside parent selector. Once the '&" is used, it means
+//the selector where the nesting is happening is carried into the selector name where th '&" appeared.
+//as in the above '&__logo" means .header__logo
     
 Creating the folders: This folders will contain partials so that they can be imported in the main.scss. The filename for
 partials starts with `_`
@@ -409,7 +412,7 @@ First create a row and put the columns inside the row.
             2nd part of 3 equal columns
         </div> 
         <div class="col-1-of-3">
-            3nd part of 3 equal columns
+            3rd part of 3 equal columns
         </div>
     </div>
 
@@ -424,6 +427,60 @@ First create a row and put the columns inside the row.
         </div> 
     </div>
 
-//A row containing 3 equal columns of equal parts
+//A row containing 2 columns witch 1 stretching through 2 parts
 
+<div class="row">
+        <div class="col-1-of-4">
+            1st part of 4 equal columns
+        </div> 
+        <div class="col-1-of-4">
+            2nd part of 4 equal columns
+        </div> 
+        <div class="col-1-of-4">
+            3rd part of 4 equal columns
+        </div> 
+        <div class="col-1-of-4">
+            4th part of 4 equal columns
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-1-of-4">
+            1st part of 4 equal columns
+        </div> 
+        <div class="col-1-of-4">
+            2nd part 
+        </div> 
+        <div class="col-2-of-4">
+            3rd part 
+        </div> 
+    </div> 
+    
+    <div class="row">
+        <div class="col-1-of-4">
+            1st part 
+        </div> 
+        <div class="col-3-of-4">
+            2nd part
+        </div>  
+    </div>
+
+    //from the class name you will see how much of space each column occupies in the row.
+
+Styling: This is layout so it goes into the layout folder. _grid.scss
+
+    .row {
+        margin: 0 auto;
+        max-width: $grid-width;
+
+        &not(:last-child) {
+            margin-bottom: $gutter-vertical;
+        }
+        
+    }
+
+//In the typography, define the custom font size for the html in rem. Default browser font size is 16px,
+//we can set 1 rem to be 10 px by making font-size: 62%; for html.
+//create variables in the variables file to represent the margins for the row.
+//since we don't want margin-bottom on the last child of the row we use the not() pseudo class.
 
