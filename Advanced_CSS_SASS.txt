@@ -657,4 +657,92 @@ This is done in the _utilities.scss.
         text-align: center;
     }
 
-//by this we set the text in the parent that's now an inline-block element gets centered in the parent element.
+//by this we center the text in the parent that's now an inline-block element. It gets centered in the parent element.
+
+Using grid to implement the two columns we have in the about section:
+
+we use the row and col-1-of-2 for both sides. //remove the background color we used for test.
+
+    <div class="col-1-of-2">
+        Text content
+
+    <div class="col-1-of-2">
+        img composition
+
+With a utility class we create different margin-bottoms so that when needed we can just apply it.
+For this section we add the .u-margin-bottom-big
+
+//Good to have margin-bottom-med, margin-bottom-small
+
+    .u-margin-bottom-big {
+        margin-bottom: 8rem;
+    }
+
+In the text content section we can start adding some text elements
+
+     <div class="col-1-of-2">
+        //Text content
+        <h3 class="heading-tertiary">
+        <p class="paragraph" > lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor
+        
+        <h3 class="heading-tertiary">
+        <p class="paragraph" > lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor
+    //representing two headers
+
+
+Styling the heading tertiary: 
+
+    .heading-tertiary {
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .paragraph {
+        font-size: 1.6rem;
+
+        &:not(:last-child) {
+            margin-bottom: 3rem;
+        }
+    }
+
+//You can always add more styling to suit your desire
+
+To the h3 class we add a u-margin-bottom-small
+
+//you can set your med and small to be 4 rem and 1.5rem or your preferred values
+
+Adding the about button:
+
+Right after the last paragraph - <a href="#" class="btn-text">learn more &rarr;</a>
+
+//for more resources on html special symbols - https://codingheroes.io/resources/
+
+Styling the btn-text:
+    .btn-text {
+
+        &:visited,
+        &:link {
+            font-size: 1.6rem;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        transition: all .2s;
+        } 
+
+        &:hover {
+            background-color: $color-primary;
+            text-color: $color-;
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            box-shadow: 0 0.5rem 1rem rgba($color-black, .2);
+            transform: translateY(0);
+        }       
+    }
+
+//you can create a _variable for font-size: 1.6rem since it's repeatedly used.
+
