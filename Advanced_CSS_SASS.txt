@@ -746,3 +746,67 @@ Styling the btn-text:
 
 //you can create a _variable for font-size: 1.6rem since it's repeatedly used.
 
+
+Adding and styling the imgs of the about section:
+//still in the row we enter the 2nd col-1-of-2
+
+    <div class="col-1-of-2">
+        <div class="composition">
+            <img src="" class="composition__photo composition__photo--p1">
+            <img src="" class="composition__photo composition__photo--p2">
+            <img src="" class="composition__photo composition__photo--p3">
+
+//composition is the block and photo represents the element and p1 is the modifier BEM
+
+To style the composition block, we create the _composition.scss file in the components folder and import it in the main file - @import "components/composition"
+
+    .composition {
+        position: relative;
+
+        &__photo {
+            width: 50%;
+            box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+            border-radius: 2px;
+            position: absolute;
+            outline-offset: 2rem;
+
+
+            &--p1 {
+            top: -2rem;
+            left: 0;
+        }  
+        
+            &--p2 {
+                top: 2rem;
+                right: 0;
+            }  
+            
+            &--p3 {
+                top: 10rem;
+                left: 20%;
+            }
+
+            &:hover {
+                outline: 1.5rem solid $color-;
+                transition: scale(1.1);
+                box-shadow: 0 2rem 4rem rgba($color-black, 0.5);
+                z-index: 50;
+
+            }
+
+
+        }
+
+      &:hover &__photo:not(:hover) {
+        transition: scale(0.9)
+      }  
+
+    }
+
+
+//z-index brings the hover image to front putting other behind. NOTE: the :hover is inside &__photo bc the hover effect is applied to the photos
+ /outlined is used instead of border bc of the space between the images and the outlined. With outline, you can add outline-offset to the photos and
+ //have space between the images and the outline.
+ //the second hover is put inside the composition block. This means on hover of the composition block, the photo not hovered should do the following.
+ //play around with numbers to see the effect.
+
