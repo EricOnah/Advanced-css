@@ -483,4 +483,73 @@ Styling: This is layout so it goes into the layout folder. _grid.scss
 //we can set 1 rem to be 10 px by making font-size: 62%; for html.
 //create variables in the variables file to represent the margins for the row.
 //since we don't want margin-bottom on the last child of the row we use the not() pseudo class.
+//in the above, it means every other child except the last child.
 
+
+Now we can style the columns:
+
+width of the column = 100% of the width of the row minus the horizontal gutter divided by the number of columns in that row.
+If there are columns occupying more than one column space by the division, the column space will be = column
+space times number of columns in that row the column is going to occupy.
+
+e.g  .row {
+        margin: 0 auto;
+        max-width: $grid-width;
+
+        &not(:last-child) {
+            margin-bottom: $gutter-vertical;
+        }
+        
+    
+
+        .col-of-2 {
+            width: calc((100% - #{$gutter-horizontal}) / 2);
+            background-color: #;
+            float: left;
+
+            &:not(:last-child){
+                margin-right: $gutter-horizontal;
+            }
+        }
+    }
+
+//When you float element, the height collapses and becomes zero. To correct this, we use the clearfix method.
+//This appends a pseudo element after the element that clears this error.
+
+In the _mixins.scss we write rhe clearfix method and add include it where appropriate.
+NOTE: You can write a mixin for codes that you use repeatedly and have them included wherever needed.
+
+    @mixin clearfix {
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+//You must include the content property or the pseudo element will not show.
+//This display property for this always table
+//the clear property is what does the actual work and set to both it will clear both left and right float
+
+Now can include it in the grid inside the row.
+
+.row {
+        margin: 0 auto;
+        max-width: $grid-width;
+
+        &not(:last-child) {
+            margin-bottom: $gutter-vertical;
+        }
+        
+        @include clearfix;
+
+        .col-of-2 {
+            width: calc((100% - #{$gutter-horizontal}) / 2);
+            background-color: #;
+            float: left;
+
+            &:not(:last-child){
+                margin-right: $gutter-horizontal;
+            }
+        }
+    }
