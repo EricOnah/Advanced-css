@@ -340,8 +340,8 @@ Sass we can nest codes using `&` to make it make more sense. This way keep maint
 e.g .header {
         height: 95vh;
         background-image: linear-gradient(to right bottom, 
-        rgba(255, 255, 255, 0.8), 
-        rgba(0, 0, 0, 0.8)),
+        rgba($color-, 0.8), 
+        rgba($color-, 0.8)),
         url(../img/bg.jpg);
         background-size: cover;
         background-position: top;
@@ -810,3 +810,98 @@ To style the composition block, we create the _composition.scss file in the comp
  //the second hover is put inside the composition block. This means on hover of the composition block, the photo not hovered should do the following.
  //play around with numbers to see the effect.
 
+
+ Building the features section: 
+ For the icons for this section visit: https://linea.io
+
+ We first include the icon font in our html <link rel".......href="css/icon-font.css"
+ //meaning we have the icon-font css in our css folder
+
+Html structure of the features section:
+
+    <section class="section-features>
+        <div class="row">
+            <div class="col-1-of-4">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-preferredIcon"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small"> some text</h3>
+                    <p class="feature-box__text"> some text </p>
+            
+            
+            <div class="col-1-of-4">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-preferredIcon"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small"> some text</h3>
+                    <p class="feature-box__text"> some text </p> 
+            
+            
+            <div class="col-1-of-4">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-preferredIcon"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small"> some text</h3>
+                    <p class="feature-box__text"> some text </p>
+
+            
+            <div class="col-1-of-4">
+                <div class="feature-box">
+                    <i class="feature-box__icon icon-preferredIcon"></i>
+                    <h3 class="heading-tertiary u-margin-bottom-small"> some text</h3>
+                    <p class="feature-box__text"> some text </p>
+
+//since it's 4 columns, we repeat 4 times. Change the icon to fit the purpose
+
+
+//to the h3 we add a utility class u-margin-bottom-small to create a margin between it and the paragraph element.
+
+Styling the features section: 
+first create a _feature-box.scss file in the components folder since it's a component and include it in the main.scss file.
+In the home.scss add style the section-features.
+    .section-features {
+        padding: 20rem 0;
+         background-image: linear-gradient(to right bottom, 
+        rgba($color-, 0.8), 
+        rgba($color-, 0.8)),
+        url(../img/bg-lg.jpg);
+        background-size: cover;
+        transform: skewY(-7deg);
+
+        & > * {
+            transform: skewY(7deg);
+        }
+    }
+
+//used skew to give similar inclination like the header. We can also do that we clip path as we did with header.
+//With the direct child selector, we selected all the direct child of the section and skewed it in the opposite direction "& > *" this way we
+//reversed the first skew that was added on all the children of the section.
+//we can also do this by adding the opposite skew to the .feature-box instead but if we want to add another feature in the
+//section outside the feature-box, we wil have to do the same for that feature. So the above is better.
+
+
+Styling the feature-box:
+    .feature-box {
+        background-color: rgba($color-, 0.8);
+        font-size: 1.5rem;
+        padding: 2.5rem;
+        text-align: center;
+        border-radius: 0.3rem;
+        box-shadow: 0 1.5rem 4rem rgba($color-, 0.15);
+        transition all .2s;
+
+        &__icon {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background-image: linear-gradient(to right, $color, $color);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &:hover {
+            transform: translateY(-1.5rem) scale(1.03);
+        }
+
+        &__text {
+
+        }
+    }
+                    
