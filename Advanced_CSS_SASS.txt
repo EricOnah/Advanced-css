@@ -864,6 +864,7 @@ In the home.scss add style the section-features.
         url(../img/bg-lg.jpg);
         background-size: cover;
         transform: skewY(-7deg);
+        margin-top: -10rem;
 
         & > * {
             transform: skewY(7deg);
@@ -875,6 +876,7 @@ In the home.scss add style the section-features.
 //reversed the first skew that was added on all the children of the section.
 //we can also do this by adding the opposite skew to the .feature-box instead but if we want to add another feature in the
 //section outside the feature-box, we wil have to do the same for that feature. So the above is better.
+//margin-top is added to cover the space that appeared as a result of the skew we applied to the section. With -10rem we pushed the section up.
 
 
 Styling the feature-box:
@@ -900,8 +902,81 @@ Styling the feature-box:
             transform: translateY(-1.5rem) scale(1.03);
         }
 
-        &__text {
+    }
 
+Tours section:
+html structure 
+
+    <section class="section-tours">
+        <div class="u-margin-bottom-big u-center-class">
+            <h2 class="heading-secondary">some text </h2>
+
+        <div class="row>
+            <div class="col-3-of-1">
+
+            <div class="col-3-of-1">
+
+            <div class="col-3-of-1">
+Styling the tours section:
+    .section-tours {
+        background-color: $color-;
+        padding: 25rem 0;
+        margin-top: -10rem;
+    }
+//again margin-top to cover the empty space.
+
+For the cards that will occupy the columns, we create a fil in components folder and import it in the main.scss file.
+In the column 
+    <div class="col-1-of-3">
+        <div class="card">
+            <div class="card__side card__side--front">
+
+            <div class="card__side card__side--back-1">
+                    
+//since the cards have different designs we add modifiers to every card
+
+Styling the card:
+In the _card.scss file in components we style the cards
+    .card {
+        perspective: 1500;
+        -moz-perspective: 1500;
+        position: relative;
+        height: 50rem;
+
+        &__side {
+            color: $color;
+            font-size: preferred font-size;
+            height: 50rem;
+            transition: all .2s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.3rem;
+            box-shadow: 0 1.5rem 4rem rgba($color-, .15)
+
+            &__front {
+                
+            }
+            
+            &__back {
+                transform: rotateY(180deg);
+
+                &-1 {
+                    background-image: linear-gradient(to right bottom, $color-, $color-);
+                }
+            }
+        }
+
+        &:hover &__side--front {
+            transform: rotateY(180deg)
+        }  
+        
+        &:hover &__side--back {
+            transform: rotateY(0)
         }
     }
-                    
+
+//perspective is used to add smooth effect to the rotation transition    
+//height is added to the card because once you set position property, the height collapses
