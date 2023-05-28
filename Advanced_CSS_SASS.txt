@@ -995,6 +995,8 @@ Styling the front:
             height: 23rem;
             background-blend-mode: screen;
             clip-path: polygon();
+            border-top-left-radius: 0.3rem;
+            border-top-right-radius: 0.3rem;
 
 
             &--1 {
@@ -1039,6 +1041,8 @@ styling:
 //with the box-decoration-break, we have the padding applying to each line of text separately. You can also achieve this
 //by using two spans to separate the text like the case of the heading in the header section.
 //box-decoration-break is better cause it takes less line of code.
+//manually added the border top radius because the clip path property overrides the overflow property we used earlier.
+
 
 For card__details:
 structure:
@@ -1070,3 +1074,54 @@ styling:
                 }
             }
         }
+
+Building the back of the card:
+
+structure:
+    <div class="card__side--back card__side--back--1">
+        <div class="card__cta">
+            <div class="card__price-box">
+                <div class="card__price-only">Only</div>
+                <div class="card__price-value">$</div>
+
+            <a href="#" class="btn btn--secondary">Some text </a>
+
+
+styling:
+    under .card
+        &__cta {
+            @include center-item;
+            width: 90%;
+            text-align: center;
+        }
+
+        &__price-box {
+            text-align: center;
+            color: $color-;
+            margin: 8rem;
+
+        }
+        
+        &__price-only {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+        
+        &__price-value {
+          font-size: 6rem;
+          font-weight: 100;   
+        }
+
+//center-item, a mixin for centering item using positioning.
+
+NOTE you can create the rest of the cards under the col in the row.
+
+Adding the button:
+structure:
+    under the tours .section-tours
+
+        <div class="u-center-text u-margin-top-big">
+            <a href="#" class="btn btn-tertiary">SOme text
+
+Styling: 
+change the color of btn-primary since every thing is the same
