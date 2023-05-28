@@ -941,17 +941,16 @@ In the _card.scss file in components we style the cards
         perspective: 1500;
         -moz-perspective: 1500;
         position: relative;
-        height: 50rem;
+        height: 52rem;
 
         &__side {
-            color: $color;
-            font-size: preferred font-size;
-            height: 50rem;
+            height: 52rem;
             transition: all .2s ease;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
+            overflow: hidden;
             backface-visibility: hidden;
             border-radius: 0.3rem;
             box-shadow: 0 1.5rem 4rem rgba($color-, .15)
@@ -970,7 +969,7 @@ In the _card.scss file in components we style the cards
         }
 
         &:hover &__side--front {
-            transform: rotateY(180deg)
+            transform: rotateY(-180deg)
         }  
         
         &:hover &__side--back {
@@ -980,3 +979,94 @@ In the _card.scss file in components we style the cards
 
 //perspective is used to add smooth effect to the rotation transition    
 //height is added to the card because once you set position property, the height collapses
+//overflow is added ao that the image doesn't cover the card shape.
+
+Structuring the front:
+    <div class="card__side card__side--front">
+        <div class="card__img card__img--1">
+            &nbsb;
+        <h4 class="card__heading">
+
+        <div class="card__details">
+Styling the front:
+    Under .card
+        &__img {
+            background-size: cover;
+            height: 23rem;
+            background-blend-mode: screen;
+            clip-path: polygon();
+
+
+            &--1 {
+                background-image: linear-gradient(to right bottom, $color-, $color-),
+                url(img location)
+            }
+        &__heading {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: $color-;
+            position: absolute;
+            top: 12rem;
+            right: 2rem;
+            text-align: right;
+            width: 75%;
+        }    
+        }
+
+
+
+//add webkit to the clip for older browsers.
+//adjust the width of the heading to have the heading text in two separate lines or user a modifier and define
+//the width of the heading of each card to break the text into two if you can't find a common with that can do that
+
+To have a box decoration break in the h4 we add a span to separate the heading text.
+
+    under .card__side--front
+    <h4 class="card__heading>
+        <span class="card__heading-span card__heading-span--1">heading text </span>
+
+
+styling:
+    under .card
+        &__headin-span {
+            padding: 1rem 2rem;
+            box-decoration-break: clone;
+            &--1 {
+                background-image: linear-gradient(to right bottom, rgba($color-, 0.8), rgba($color-, 0.8))
+            }
+        }
+
+//with the box-decoration-break, we have the padding applying to each line of text separately. You can also achieve this
+//by using two spans to separate the text like the case of the heading in the header section.
+//box-decoration-break is better cause it takes less line of code.
+
+For card__details:
+structure:
+
+    <div class="card__details">
+        <ul class="">
+            <li>Some text</>
+            <li>Some text</>
+            <li>Some text</>
+            <li>Some text</>
+
+styling:
+    under .card
+        &__details {
+            padding: 3rem;
+            ul {
+                list-style: none;
+                width: 80%;
+                margin: 0 auto;
+
+                li {
+                    text-align: center;
+                    font-size: 1.6rem;
+                    padding: 1rem;
+
+                    &:not(:last-child){
+                        border-bottom: 1px solid $color-;
+                    }
+                }
+            }
+        }
