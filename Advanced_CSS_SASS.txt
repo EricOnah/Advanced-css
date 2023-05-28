@@ -1125,3 +1125,144 @@ structure:
 
 Styling: 
 change the color of btn-primary since every thing is the same
+
+Building the testimonial section:
+
+structure:
+    <section class="section-stories">
+        <div class="u-center-text u-margin-bottom-big">
+            <h2 class="heading-secondary">Some text
+
+        <div class="row">
+            <div class="story">
+                <figure class="story__shape">
+
+                <div class="story__text">
+                    <h3 class="heading-tertiary margin-bottom-small">Some text
+                    <p> some text 
+
+
+Styling: 
+In the _home.scss
+        .section-stories {
+            padding: 15rem 0;
+
+        }
+In the Components folder add _story.scss and import in the main.scss file.
+
+        .story {
+            width: 75%;
+            margin: 0 auto;
+            box-shadow: ;
+            background-color: rgba($color-, 0.60);
+            border-radius: 0.3rem;
+            padding: 6rem;
+            font-size: $default-font-size;
+            transform: skewX(-12deg)
+
+            &__shape {
+                width: 15rem;
+                height: 15rem;
+                background-color: ;
+                float: left;
+                shape-outside: circle(50% at 50% 50%);
+                clip-path: circle(50% at 50% 50%);
+                transform: translateX(-3rem);
+                position: relative;
+            }
+        }
+
+
+//for the shape outside to work, the element has to be floated
+//we float left so the text will flow around the shape.
+//add webkit to shape outside and clip-path for other browsers.
+//Transform used to add space between the shape and the text instead of margin bc it's the best way to do it on 
+//a floated element
+//position relative so that the story caption position is relative to the shape as parent element.
+//You can not add opacity direct to the element as it will be inherited by all the children of the element
+//to do that we add the opacity to background color instead.
+
+Add image now - <div class="story">
+                <figure class="story__shape">
+                    <img src="" alt="" class="story__image">
+                    <figcaption class="story__caption">some text
+
+styling: 
+
+        under .story
+            &__image {
+                height: 100%;
+                transform: translateX(-3rem) scale(1.4);
+                transition: all 0.2s;
+            }
+
+            &__text {
+                transform: skweX(12deg)
+            }
+
+            &__figcaption {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, 20%)
+                color: ;
+                font-size: 1.7rem;
+                opacity: 0;
+                transition: all 0.2s;
+                backface-visibility: hidden;
+            }
+
+            &:hover &__captions {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+
+            &:hover &__image {
+                transform: translateX(-3rem) scale(1);
+                filter: blur(3px) brightness(80%);
+            }
+
+
+//you can house the content of the shape in a div and skew them once. This wil reverse the effect of the skew
+//that was added in the story section.
+//transform to bring it down a bit to add to the effect of moving up when hovered.
+//when element miss behave becauseof transition, backface-visibility can correct it.
+//translate added to image to position it in the center.
+
+Duplicate for more testimonies and add the button text.
+    in the section Tours
+        <div class="u-margin-top-big u-center-text>
+            <a href="#" class="btn btn-text> some text &rarr;
+
+
+
+Adding background video:
+    structure:
+    Inside the section
+        <div class="bg-video">>
+            <video class="bg-video__content autoplay muted loop">
+                <source src="video location" type="video/mp4 or whatever type">
+                <source src="video location" type="video/webm or whatever type">
+
+Styling: 
+create a _bg-video.scss file in the components folder
+    .bg-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        overflow: hidden;
+
+        &__content {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+//To the parent which is the section add position relative and remove the background color
+//object-fit to fit the video in the section and with overflow with hid the extras.
+
