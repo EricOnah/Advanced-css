@@ -1454,4 +1454,29 @@ in the label and hide the radio buttons so that when the label is clicked our bu
 
 //because the radio-btn is not a direct child of te radio-input, we first selected the sibling of the radio input
 //which is radio-label that the radio-btn is a direct child of then, select the radio-btn after pseudo element
-//Then we hide te radio input with display none
+//Then we hide te radio input with display none.
+NOTE: What we did here with the radio button can be applied also to checboxes.
+
+Adding the button: 
+Create a new form group and add a real button element there so that it can send the form content
+    <div class="form__grp">
+        <button class="btn secondary" Some text &rarr;</button>
+
+Styling: To style the button we add to the btn style
+        &,
+        &:visited,
+        &:link {
+
+            //for button Element
+
+            border: none;
+            cursor: pointer;
+        }
+
+        &:active,
+        &:focus {
+            outline: none;
+        }
+
+//for the active state we added the focus so that te same style will apply and removed the outline.
+//add important to the utility classes so that it will not be overridden by any other property.
