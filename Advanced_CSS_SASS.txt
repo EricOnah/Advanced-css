@@ -1263,6 +1263,195 @@ create a _bg-video.scss file in the components folder
     }
 
 
-//To the parent which is the section add position relative and remove the background color
+//To the parent which is the .section-tours add position relative and remove the background color
 //object-fit to fit the video in the section and with overflow with hid the extras.
 
+
+Building the Booking section:
+structure: 
+    <section class="section-book">
+        <div class="row">
+            <div class="book">
+
+Styling the section:
+    In the home.scss
+    .section-book {
+        padding: 15rem 0;
+        background-image: linear-gradient(to right bottom, $color-, $color);
+
+    }
+
+    .book {
+        background-image: linear-gradient
+        (105deg, rgba($color-, .9) 0%, 
+        rgba($color-same-color, .9) 50%, 
+        transparent 50%), 
+        url(image location);
+        background-size: cover;
+        height: 50rem;
+        box-shadow: 0 1.5rem 4rem rgba($color. 0.2)
+    }
+
+//for the linear gradient, we used deg instead of direction to have angle to the distribution of the color and transparency.
+
+For the form:
+    <div class="book">
+        <div class="book__form">
+            <form action="#" class="form">
+                <div class="u-center-text u-margin-bottom>
+                    <h2 class="heading-secondary>Some text</h2>
+
+                <div class="form__grp">
+                    <input type="text" class="form__input" placeholder="Full Name" id="name" required>
+                    <label for="name" class="form__label">Some text</label>
+                
+                
+                <div class="form__grp">
+                    <input type="email" class="form__input" placeholder="Email Address" id="email" required>
+                    <label for="email" class="form__label">Some text</label>
+
+//We used the id to link the input and the label.
+
+
+Styling:
+Create a _form.scss in the components folder and import it in the main.scss
+        .form {
+            width: 50%;
+            padding: 6rem;
+
+            &__grp {
+
+                &:not(last-child) {
+                    margin-bottom: 2rem;
+                }
+            }
+
+            &__input {
+                font-size: 1.6rem;
+                font-family: inherit;
+                color: inherit;
+                padding: 1.5rem 2rem;
+                border-radius: 0.2rem;
+                background-color: rgba($color, .15);
+                border: none;
+                border-bottom: 2px solid transparent;
+                width: 90%;
+                display: block;
+                transition: all .3s;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 1rem 2rem rgba($color-, 0.2);
+                    border-bottom: 2px solid $color-;
+                }
+                
+                &:focus:invalid {
+                    border-bottom: 2px solid $color-different;
+                }
+
+                &::webkit-input-placeholder {
+                    color: $color-;
+                
+                }
+            }
+
+
+            &__label {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-left: 2rem;
+                margin-top: 0.7rem;
+                display: block;
+                transition: all .3s;
+            }
+
+            &__input:placeholder-shown + &__label {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-4rem)
+            }
+        }
+
+//Input elements don't inherit font properties which is why we add them manually by using the "inherit" value.
+//with the focus invalid state we give a different color to the input when the input is invalid and another color
+//when it's valid.
+// + is an adjacent sibling selector. The sibling on the left has to be on top in the html for this to work.
+// for all sibling selector in cases where the sibling we want to select is not the adjacent sibling, we
+//use ~   &__input:placeholder-shown ~ &_label {}
+//we set the opacity to add transition to the label and visibility to ensure the element is not on the page when
+//the placeholder is still showing.
+
+
+Adding the radio buttons:
+
+Structure: Another form group
+    <div class="form__grp">
+        <div class="form__radio-grp">
+            <input type="radio" class="form__radio-input" id="small" name="size">
+            <label class="form__radio-label" for="small">
+                <span class="form__radio-btn"></span>
+                Some text </label>
+        
+        
+        <div class="form__radio-grp">
+            <input type="radio" class="form__radio-input" id="large" name="size">
+            <label class="form__radio-label" for="large">
+                <span class="form__radio-btn"></span>
+                Some text </label>
+
+//name added so that the radio group can be linked together.
+
+Styling: In css you cannot style radio buttons so we improvise with the span button. We make our own button
+in the label and hide the radio buttons so that when the label is clicked our button will be selected like the radio btn.
+
+    In the .form
+
+        &__radio-grp {
+            width: 50%;
+            display: inline-block;
+        }
+
+        &__radio-input {
+                display: none;
+            }
+
+        &__radio-label {
+            font-size: 1.6rem;
+            cursor: pointer;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        &__radio-btn {
+            height: 3rem;
+            width: 3rem;
+            border: 3px solid $color;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            &::after {
+                content: "";
+                display: block;
+                height: 1rem;
+                width: 1rem;
+                border-radius: 50%;
+                background-color: $color-same;
+                opacity: 0;
+                transition: opacity .2s;
+
+                @include center-item;
+
+            }
+
+            &__radio-input:checked ~ &__radio-label &__radio-btn::after {
+                opacity: 1;
+            }
+
+        }
+
+//because the radio-btn is not a direct child of te radio-input, we first selected the sibling of the radio input
+//which is radio-label that the radio-btn is a direct child of then, select the radio-btn after pseudo element
+//Then we hide te radio input with display none
