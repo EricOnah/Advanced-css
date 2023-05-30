@@ -4,6 +4,17 @@
         font-family: inherit;
         color: inherit;
 
+        & button {
+            @include respond(tab-port) {
+                margin-top: 4rem;
+            }
+
+            @include respond(phone) {
+                margin-top: 4rem;
+            }
+        }
+
+
         &:not(:last-child) {
             margin-bottom: 2rem;
         }
@@ -99,5 +110,7 @@
         opacity: 1;
 
     }
+
+
 
 }
