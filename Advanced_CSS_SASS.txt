@@ -1594,10 +1594,114 @@ Structure: Before the header
 
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span class="navigation__link--fav"><Use i to add a favicon /></span>Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span class="navigation__link--fav"><Use i to add a favicon /></span>Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span class="navigation__link--fav"><Use i to add a favicon /></span>Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span class="navigation__link--fav"><Use i to add a favicon /></span>Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span class="navigation__link--fav"><Use i to add a favicon /></span>Some text</a></li>
 
+Styling: Add a _navigation.scss file in the layout folder and import in the main.scss file.
 
+    .navigation {
+
+        &__checkbox {
+            display: none;
+        }
+
+        &__button {
+            background-color: $color-white;
+            height: 7rem;
+            width: 7rem;
+            border-radius: 50%;
+            position: fixed;
+            top: 6rem;
+            right: 6rem;
+            z-index: 3000;
+            box-shadow: 0 1rem 3rem rgba($color, 0.2)
+        }
+
+        &__background {
+            height: 6rem;
+            width: 6rem;
+            border-radius: 50%;
+            position: fixed;
+            top: 6.5rem;
+            right: 6.5rem;
+            background-image: radial-gradient($color, $color);
+            z-index: 2000;
+            transition: transform .2s cubic-bezier(0.);
+        }
+
+        &__nav {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2500;
+            opacity: 0;
+            width: 0;
+            transition: all .8s;
+        }
+
+        &__list {
+            @include center-item;
+            list-style: none;
+            text-align: center;
+            width: 100%;
+
+        }
+
+        &__item {
+            margin: 1rem;
+        }
+
+        &__link {
+
+            &:link,
+            &:visited {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 3rem;
+            font-weight: 300;
+            color: $color;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color 50%);
+            background-size: 220%;
+            transition: all .2s;
+
+            &--fav {
+                style it;
+            }
+            }
+
+            &:hover,
+            &:active {
+                background-position: 100%;
+                color: $color;
+                transform: translateX(1rem)
+            }
+           
+        }
+
+        &__checkbox:checked ~ &__background {
+            transform: scale(80);
+        }
+        
+        &__checkbox:checked ~ &__nav {
+            opacity: 1;
+            width: 100%
+        }
+    }
+
+//z-index only works on elements that have their position defined.
+//for the navigation item animation, the trick is with the background size. As we increase or reduce the background size,
+//first color occupies more space to the right or second color occupies more space to the left when we reduce the value.
+//In the link and visited state we set the value to 200 so that the first color will occupy the whole space.
+//Again we used the deg instead of the direction to define angle inclination for the color.
+//In the hover and active state, we set the background position to 100% so that the background image can be shifted to
+//the left by 100% making the first color occupy the whole of the space. 
+//in the first project the first color is set to transparent.
+//we used opacity and width to hide the nav instead of display: none because you can not animate display: none;
+//You can get your desired cubic-bezier transition animation function from https://cubic-bezier.com/#.17,.67,.83,.67
+//setting the nav position to left or right will determine where the nav animation starts from.
