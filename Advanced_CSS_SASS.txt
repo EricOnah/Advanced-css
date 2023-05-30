@@ -1618,6 +1618,8 @@ Styling: Add a _navigation.scss file in the layout folder and import in the main
             right: 6rem;
             z-index: 3000;
             box-shadow: 0 1rem 3rem rgba($color, 0.2)
+            text-align: center;
+            cursor: pointer;
         }
 
         &__background {
@@ -1641,6 +1643,7 @@ Styling: Add a _navigation.scss file in the layout folder and import in the main
             opacity: 0;
             width: 0;
             transition: all .8s;
+           
         }
 
         &__list {
@@ -1692,6 +1695,8 @@ Styling: Add a _navigation.scss file in the layout folder and import in the main
             opacity: 1;
             width: 100%
         }
+
+        
     }
 
 //z-index only works on elements that have their position defined.
@@ -1705,3 +1710,53 @@ Styling: Add a _navigation.scss file in the layout folder and import in the main
 //we used opacity and width to hide the nav instead of display: none because you can not animate display: none;
 //You can get your desired cubic-bezier transition animation function from https://cubic-bezier.com/#.17,.67,.83,.67
 //setting the nav position to left or right will determine where the nav animation starts from.
+
+Adding the toggle button:
+Structure:
+    <label for="navi-toggle" class="navigation__button">
+        <span class="navigation__icon">&nbsp;</span>
+
+Styling: 
+    &__icon {
+        position: relative;
+        margin-top: 3rem;
+
+
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 0.2rem;
+            background-color: $color;
+            display: inline-block;
+            
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            transition: all .2s;
+
+        }
+
+        &::before {top: -.8rem};
+        &::after {top: .8rem};
+
+        &__button:hover &__icon::before {top: -1rem};
+        &__button:hover &__icon::after {top: 1rem};
+
+        &__checkbox:checked + &__button &__icon {
+            background-color: transparent;
+        }
+        
+        &__checkbox:checked + &__button &__icon::before {
+            top: 0;
+            transform: rotate(135deg)
+        }
+        
+        &__checkbox:checked + &__button &__icon {
+            top: 0;
+            transform: rotate(-135deg);
+        }
+    }
