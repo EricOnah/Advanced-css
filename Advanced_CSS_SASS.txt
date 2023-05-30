@@ -1480,3 +1480,25 @@ Styling: To style the button we add to the btn style
 
 //for the active state we added the focus so that te same style will apply and removed the outline.
 //add important to the utility classes so that it will not be overridden by any other property.
+//add '&" to include btn class in the styling
+
+Building the footer:
+
+Structure - Outside the main bc we are done with the main section for now
+    <footer class="footer">
+        <div class="footer__logo-box">
+            <img src="logo location" alt="logo" class="footer__logo">
+        <div class="row">
+            <div class="col-1-of-2">
+                <div class="footer__nav">
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+            <div class="col-1-of-2">
+                <p class="footer__copyright">
+                    some text <a href="#" class="footer__nav-link">Some text</a> 
+                    some text <a href="#" class="footer__nav-link">Some text</a> 
+                </p>
