@@ -1498,10 +1498,11 @@ Structure - Outside the main bc we are done with the main section for now
                         <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
                         <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
             <div class="col-1-of-2">
-                <p class="footer__copyright">
-                    some text <a href="#" class="footer__nav--link">Some text</a> 
-                    some text <a href="#" class="footer__nav--link">Some text</a> 
-                </p>
+                <div class="footer__copyright">
+                    <p class="footer__copyright--text">
+                        some text <a href="#" class="footer__nav--link">Some text</a> 
+                        some text <a href="#" class="footer__nav--link">Some text</a> 
+                    </p>
 
 Styling: 
 We first create a layout  _footer.scss in the layout folder and import it in the main.scss file.
@@ -1509,6 +1510,7 @@ We first create a layout  _footer.scss in the layout folder and import it in the
     .footer{
         background-color: $color-;
         padding: 0 10rem;
+        color: $same as link text;
 
         &__logo-box {
             text-align: center;
@@ -1521,24 +1523,64 @@ We first create a layout  _footer.scss in the layout folder and import it in the
         }
 
         &__nav {
+            border-top: 1px solid $color;
+            padding-top 2rem;
+            display: inline-block;
 
 
             &--list {
+                list-style: none;
 
             }
 
             &--item {
+                display: inline-block;
+
+                &:not(:last-child) {
+                    margin-right: 1.5rem;
+                }
 
             }
 
             &--link {
 
+                &:link,
+                &:visited {
+                    color: $color-;
+                    background-color: $same with footer;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    display: inline-block;
+                    transition: all .2s;
+                }
+
+                &:hover,
+                &:active {
+                    color: $color-;
+                    box-shadow: 0 1rem 2rem rgba($color, 0.2)
+                    transform: rotate(5deg) scale(1.5);
+                }
+
             }
         }
 
         &__copyright {
+            border-top: 1px solid $color;
+            padding-top 2rem;
+            display: inline-block;
+            width: 80%;
+            float: right;
 
+            &--text {
+                color: $same as link text;
+
+            }
+             
         }
     }
 
+
+//for inline elements text-align will always center them.
+//we set display inline in the nav to have the border-top not stretch past the nav items.
+// you can have color defined in the footer for the child elements to inherit or define in each element.
 
