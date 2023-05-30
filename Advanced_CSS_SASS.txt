@@ -1486,19 +1486,59 @@ Building the footer:
 
 Structure - Outside the main bc we are done with the main section for now
     <footer class="footer">
-        <div class="footer__logo-box">
+        <div class="footer__logo-box u-margin-bottom-big">
             <img src="logo location" alt="logo" class="footer__logo">
         <div class="row">
             <div class="col-1-of-2">
                 <div class="footer__nav">
-                    <ul class="footer__nav-list">
-                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
-                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
-                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
-                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
-                        <li class="footer__nav-item"><a href="#" class="footer__nav-link">Some text</a></li>
+                    <ul class="footer__nav--list">
+                        <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
+                        <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
+                        <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
+                        <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
+                        <li class="footer__nav--item"><a href="#" class="footer__nav--link">Some text</a></li>
             <div class="col-1-of-2">
                 <p class="footer__copyright">
-                    some text <a href="#" class="footer__nav-link">Some text</a> 
-                    some text <a href="#" class="footer__nav-link">Some text</a> 
+                    some text <a href="#" class="footer__nav--link">Some text</a> 
+                    some text <a href="#" class="footer__nav--link">Some text</a> 
                 </p>
+
+Styling: 
+We first create a layout  _footer.scss in the layout folder and import it in the main.scss file.
+
+    .footer{
+        background-color: $color-;
+        padding: 0 10rem;
+
+        &__logo-box {
+            text-align: center;
+
+        }
+
+        &__logo {
+            width: 15rem;
+            height: auto;
+        }
+
+        &__nav {
+
+
+            &--list {
+
+            }
+
+            &--item {
+
+            }
+
+            &--link {
+
+            }
+        }
+
+        &__copyright {
+
+        }
+    }
+
+
