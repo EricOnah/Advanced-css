@@ -1584,3 +1584,20 @@ We first create a layout  _footer.scss in the layout folder and import it in the
 //we set display inline in the nav to have the border-top not stretch past the nav items.
 // you can have color defined in the footer for the child elements to inherit or define in each element.
 
+Building the Navigation: 
+
+Structure: Before the header 
+    <div class="navigation">
+        <input type="checkbox" name="navi-toggle" class="navigation__checkbox" id="navi-toggle" />
+        <label for="navi-toggle" class="navigation__button">
+        <div class="navigation__background">&nbsp;</div>
+
+        <nav class="navigation__nav">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Some text</a></li>
+
+
