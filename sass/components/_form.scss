@@ -3,7 +3,8 @@
         font-size: 1.5em;
         font-family: inherit;
         color: inherit;
-        &:not(:last-child){
+
+        &:not(:last-child) {
             margin-bottom: 2rem;
         }
     }
@@ -27,9 +28,9 @@
             &:invalid {
                 border-bottom: 3px solid $color-secondary-darker;
             }
-        } 
+        }
 
-        
+
         &::-webkit-input-placeholder {
             color: $color-grey-dark-2;
         }
@@ -44,7 +45,7 @@
         transition: all .3s;
     }
 
-    &__input:placeholder-shown + &__label {
+    &__input:placeholder-shown+&__label {
         opacity: 0;
         visibility: hidden;
     }
@@ -93,7 +94,8 @@
 
         }
     }
-    &__radio-input:checked ~ &__radio-label &__radio-button::after{
+
+    &__radio-input:checked~&__radio-label &__radio-button::after {
         opacity: 1;
 
     }
