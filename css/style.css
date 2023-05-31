@@ -827,6 +827,7 @@ body {
   top: 0;
   left: 0;
   z-index: 1300;
+  visibility: hidden;
   opacity: 0;
   width: 0;
   transition: all .8s; }
@@ -837,8 +838,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   list-style: none;
-  text-align: center;
-  width: 100%; }
+  text-align: center; }
 
 .navigation__item {
   margin: 1rem; }
@@ -868,7 +868,8 @@ body {
 
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
-  width: 100%; }
+  width: 100%;
+  visibility: visible; }
 
 .navigation__icon {
   position: relative;

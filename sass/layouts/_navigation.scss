@@ -62,6 +62,7 @@
         top: 0;
         left: 0;
         z-index: 1300;
+        visibility: hidden;
         opacity: 0;
         width: 0;
         transition: all .8s;
@@ -74,7 +75,6 @@
         transform: translate(-50%, -50%);
         list-style: none;
         text-align: center;
-        width: 100%;
     }
 
     &__item {
@@ -117,7 +117,7 @@
     &__checkbox:checked~&__nav {
         opacity: 1;
         width: 100%;
-        // display: block;
+        visibility: visible;
     }
 
 
