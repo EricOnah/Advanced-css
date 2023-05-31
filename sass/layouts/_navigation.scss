@@ -58,12 +58,10 @@
 
     &__nav {
         height: 100vh;
-        width: 100%;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 1300;
-        visibility: hidden;
         opacity: 0;
         width: 0;
         transition: all .8s;
@@ -119,7 +117,6 @@
     &__checkbox:checked~&__nav {
         opacity: 1;
         width: 100%;
-        visibility: visible;
         // display: block;
     }
 
