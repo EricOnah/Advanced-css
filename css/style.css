@@ -826,11 +826,12 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1300;
   visibility: hidden;
   opacity: 0;
   width: 0;
-  transition: all .8s; }
+  transition: all .8s;
+  backface-visibility: hidden;
+  z-index: -1; }
 
 .navigation__list {
   position: absolute;
@@ -869,7 +870,8 @@ body {
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
   width: 100%;
-  visibility: visible; }
+  visibility: visible;
+  z-index: 1300; }
 
 .navigation__icon {
   position: relative;
