@@ -1815,3 +1815,18 @@ Styling: In the component file add _popup.scss and import in the main.scss file
             
         }
     }
+
+
+Responsive images: 
+This is used to set the right image size to the right screen size. There are ways of doing this which includes:
+
+Density switching in html using srcset: This way we can add two images to target different devices with different resolutions.
+By adding the density, the browser will choose which image to display using the device resolution.
+    <img srcset="img/location.png 1x, img/location.png 2x" alt="" class="">
+
+This way the browser will select which image to display using the device resolution.
+
+Art direction: This is telling a browser to use a particular image on a particular screen width and another image
+on another screen width. With this we can add css media queries to the html
+    <picture class="">
+        <source 
